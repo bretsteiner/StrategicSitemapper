@@ -8,9 +8,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
-  <link rel="stylesheet" href="bs.css">
+  <link rel="stylesheet" href="bs.css"> 
   <style>
-    /* ── Paste your bs.css here, or link it externally ─────────────── */
+ 
 
     /* === TOKENS (subset of bs.css) === */
     :root {
@@ -552,6 +552,73 @@
       .stagger > *:nth-child(12) { animation-delay: .96s; }
     }
 
+    /* === CLARITY FIRST / SAVINGS === */
+    .clarity-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      margin-top: var(--space-2xl);
+    }
+    @media (min-width: 640px) { .clarity-grid { grid-template-columns: repeat(3,1fr); } }
+
+    .clarity-card {
+      background: #fff;
+      border: 1px solid var(--gray-light);
+      border-radius: var(--radius-xl);
+      padding: var(--space-2xl) var(--space-xl);
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition-base), box-shadow var(--transition-base);
+      position: relative;
+      overflow: hidden;
+    }
+    .clarity-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-coral), var(--accent-teal));
+      opacity: 0;
+      transition: opacity var(--transition-base);
+    }
+    .clarity-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+    .clarity-card:hover::after { opacity: 1; }
+    .clarity-card__metric {
+      font-family: 'Inter', sans-serif;
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--accent-coral);
+      line-height: 1;
+      margin-bottom: var(--space-sm);
+    }
+    .clarity-card__title { font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: var(--space-sm); }
+    .clarity-card__text { font-size: .875rem; color: var(--text-secondary); line-height: 1.65; }
+
+    .clarity-intro-strip {
+      background: var(--bg-dark);
+      border-radius: var(--radius-xl);
+      padding: var(--space-2xl) var(--space-xl);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+      margin-top: var(--space-2xl);
+      align-items: center;
+    }
+    @media (min-width: 768px) { .clarity-intro-strip { grid-template-columns: 1fr auto; } }
+    .clarity-intro-strip__text { color: rgba(255,255,255,.75); font-size: 1.1rem; line-height: 1.7; }
+    .clarity-intro-strip__text strong { color: #fff; font-weight: 700; }
+    .clarity-intro-strip__quote {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--accent-coral);
+      white-space: nowrap;
+      padding: var(--space-md) var(--space-xl);
+      border: 2px solid rgba(255,111,97,.3);
+      border-radius: var(--radius-lg);
+      text-align: center;
+    }
+
     /* === MISC === */
     .text-center { text-align: center; }
     .mt-sm { margin-top: var(--space-sm); }
@@ -568,10 +635,9 @@
     <div class="nav__inner">
       <a href="https://bretsteiner.com" class="nav__brand">Bret<span>Steiner</span></a>
       <ul class="nav__links">
-        <li><a href="https://bretsteiner.com">Home</a></li>
-        <li><a href="https://bretsteiner.com/services">Services</a></li>
+        <li><a href="https://bretsteiner.com">bretsteiner.com</a></li>
         <li><a href="#capabilities">Capabilities</a></li>
-        <li><a href="#contact" class="nav__cta">Get in touch</a></li>
+        <li><a href="#contact" class="nav__cta">Request a Demo</a></li>
       </ul>
     </div>
   </nav>
@@ -587,13 +653,13 @@
       <div class="hero__content">
         <div class="hero__badge fade-up">
           <span class="dot"></span>
-          A tool from the Bret Steiner consultancy
+          Built from years of digital stakeholder management
         </div>
         <h1 class="hero__title fade-up" style="animation-delay:.1s">
           Strategic<br><em>Sitemapper</em>
         </h1>
         <p class="hero__subtitle fade-up" style="animation-delay:.2s">
-          See the full system before you change it. Map every digital touchpoint, dependency, and ownership into one continuously‑updated source of truth.
+          When everyone sees the same picture, you build the right product — faster and cheaper. Map every digital touchpoint, dependency, and ownership into one continuously‑updated source of truth.
         </p>
         <div class="hero__cta fade-up" style="animation-delay:.3s">
           <a href="#contact" class="btn btn--primary">
@@ -620,11 +686,11 @@
         </div>
         <div class="proof-stat">
           <div class="proof-stat__number">1</div>
-          <div class="proof-stat__label">Source of truth</div>
+          <div class="proof-stat__label">Shared source of truth</div>
         </div>
         <div class="proof-stat">
-          <div class="proof-stat__number">Live</div>
-          <div class="proof-stat__label">System status tracking</div>
+          <div class="proof-stat__number">0</div>
+          <div class="proof-stat__label">Expensive guesswork</div>
         </div>
       </div>
     </div>
@@ -680,6 +746,42 @@
             <p class="problem-card__title">Stale documentation</p>
             <p class="problem-card__text">Diagrams created in workshops grow out of date within weeks, losing all practical value.</p>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CLARITY FIRST ──────────────────────────────── -->
+  <section class="section" style="background:var(--bg-light-tone)">
+    <div class="container">
+      <div class="text-center">
+        <p class="section-label">The methodology</p>
+        <h2>Clarity first.<br>Build the right thing, faster — and cheaper.</h2>
+        <p class="section-intro mt-lg" style="margin:var(--space-lg) auto 0">Strategic Sitemapper grew out of years of digital stakeholder management. The insight was simple: when every person in the room is looking at the same picture, the entire project changes.</p>
+      </div>
+
+      <div class="clarity-intro-strip stagger">
+        <p class="clarity-intro-strip__text">
+          <strong>Expensive guesswork is the default mode for most transformation programmes.</strong> Teams align to different versions of reality, decisions get made without full system visibility, and rework becomes the biggest hidden cost on the budget. Bret Steiner developed Strategic Sitemapper as a direct response to this pattern — a tool that makes the shared picture compulsory, not aspirational.
+        </p>
+        <div class="clarity-intro-strip__quote">One picture.<br>Everyone aligned.</div>
+      </div>
+
+      <div class="clarity-grid stagger" style="margin-top:var(--space-2xl)">
+        <div class="clarity-card">
+          <div class="clarity-card__metric">Faster</div>
+          <p class="clarity-card__title">Shorter delivery cycles</p>
+          <p class="clarity-card__text">When the model is agreed up front, teams stop rebuilding the same decisions. Alignment replaces iteration, and sprints actually ship.</p>
+        </div>
+        <div class="clarity-card">
+          <div class="clarity-card__metric">Cheaper</div>
+          <p class="clarity-card__title">Less rework, fewer surprises</p>
+          <p class="clarity-card__text">Unclear scope is the most expensive line in any project. Clarity before build means you commit budget to the right things — and only the right things.</p>
+        </div>
+        <div class="clarity-card">
+          <div class="clarity-card__metric">Aligned</div>
+          <p class="clarity-card__title">A shared vision, not four versions</p>
+          <p class="clarity-card__text">Product, tech, content, and leadership all interrogating the same model — so your team executes a shared vision instead of filling in the gaps themselves.</p>
         </div>
       </div>
     </div>
@@ -883,14 +985,14 @@
     <div class="container">
       <div class="cta-band__content">
         <p class="section-label" style="color:rgba(255,255,255,.6)">Ready to get started?</p>
-        <h2>Let's map your system together</h2>
-        <p>Strategic Sitemapper is delivered as part of Bret Steiner's consultancy engagements. Get in touch to discuss how it can support your transformation programme.</p>
+        <h2>Clarity before build.<br>Shared vision from day one.</h2>
+        <p>Strategic Sitemapper is the result of years of hands-on digital stakeholder management — developed by Bret Steiner to make transformation programmes faster, cheaper, and better aligned. When your team is executing a shared vision instead of guesswork, the savings speak for themselves.</p>
         <div class="cta-band__btns">
-          <a href="mailto:bret@bretsteiner.com" class="btn btn--dark">
-            <span class="material-symbols-outlined" style="font-size:1.1rem">mail</span>
-            Email Bret
+          <a href="mailto:bretsteiner@gmail.com" class="btn btn--dark">
+            <span class="material-symbols-outlined" style="font-size:1.1rem">calendar_month</span>
+            Request a Demo
           </a>
-          <a href="https://bretsteiner.com" class="btn btn--outline-white">Back to bretsteiner.com</a>
+          <a href="https://bretsteiner.com" class="btn btn--outline-white">Explore the methodology →</a>
         </div>
       </div>
     </div>
@@ -902,9 +1004,8 @@
       <div class="footer__inner">
         <div class="footer__brand">Bret<span>Steiner</span></div>
         <nav class="footer__links">
-          <a href="https://bretsteiner.com">Home</a>
-          <a href="https://bretsteiner.com/services">Services</a>
-          <a href="mailto:bret@bretsteiner.com">Contact</a>
+          <a href="https://bretsteiner.com">bretsteiner.com</a>
+          <a href="mailto:bretsteiner@gmail.com">Contact</a>
         </nav>
         <p style="font-size:.75rem">© 2026 Bret Steiner. All rights reserved.</p>
       </div>
